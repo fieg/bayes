@@ -3,6 +3,8 @@ Naive Bayes Classifier
 
 Implementation of Naive Bayes Classifier algorithm in PHP.
 
+[![Build Status](https://travis-ci.org/fieg/bayes.png?branch=master)](https://travis-ci.org/fieg/bayes)
+
 Getting started
 ---------------
 
