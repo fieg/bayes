@@ -56,7 +56,8 @@ class Classifier
     public function train($label, $text)
     {
         $tokens = $this->tokenizer->tokenize($text);
-        foreach($tokens as $token) {
+
+        foreach ($tokens as $token) {
             @$this->labels[$label]++;
             @$this->tokens[$token]++;
             @$this->data[$label][$token]++;
@@ -66,9 +67,9 @@ class Classifier
     }
 
     /**
-     * Classifies a text and returns the label
+     * Classifies a text and returns the probability (score) per label
      *
-     * @param string $text
+     * @param  string $text
      * @return array
      */
     public function classify($text)
@@ -79,7 +80,7 @@ class Classifier
 
         $scores = array();
 
-        foreach($this->labels as $label => $labelCount) {
+        foreach ($this->labels as $label => $labelCount) {
             $logSum = 0;
 
             $docCount = intval(@$this->docs[$label]);
@@ -89,7 +90,7 @@ class Classifier
                 continue;
             }
 
-            foreach($tokens as $token) {
+            foreach ($tokens as $token) {
                 $totalTokenCount = intval(@$this->tokens[$token]);
 
                 if (0 === $totalTokenCount) {
@@ -135,8 +136,8 @@ class Classifier
     }
 
     /**
-     * @param string $token
-     * @param string $label
+     * @param  string $token
+     * @param  string $label
      * @return int
      */
     protected function inversedTokenCount($token, $label)
@@ -146,7 +147,7 @@ class Classifier
 
         unset($data[$label]);
 
-        foreach($data as $_label => $tokenCounts) {
+        foreach ($data as $_label => $tokenCounts) {
             $total += intval(@$tokenCounts[$token]);
         }
 
@@ -154,7 +155,7 @@ class Classifier
     }
 
     /**
-     * @param string $label
+     * @param  string $label
      * @return number
      */
     protected function inversedDocCount($label)

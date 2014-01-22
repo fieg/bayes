@@ -13,7 +13,7 @@ class ClassifierTest extends \PHPUnit_Framework_TestCase
         $classifier = new Classifier(new WhitespaceAndPunctuationTokenizer());
 
         $data = $this->trainingData();
-        foreach($data as $row) {
+        foreach ($data as $row) {
             list($label, $text) = $row;
 
             $classifier->train($label, $text);
