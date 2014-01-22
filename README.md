@@ -1,7 +1,7 @@
 Naive Bayes Classifier
 ======================
 
-Implementation of Naive Bayes Classifier algorithm.
+Implementation of Naive Bayes Classifier algorithm in PHP.
 
 Getting started
 ---------------

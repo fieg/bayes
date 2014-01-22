@@ -1,5 +1,9 @@
 {
   "name": "fieg/bayes",
+  "description": "Implementation of Naive Bayes Classifier algorithm in PHP.",
+  "type": "library",
+  "keywords": ["machine", "learning", "naive", "bayes", "classifier"],
+  "homepage": "https://github.com/fieg/bayes",
   "authors": [
     {
       "name": "fieg",
