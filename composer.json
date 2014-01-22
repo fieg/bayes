@@ -1,0 +1,21 @@
+{
+  "name": "fieg/bayes",
+  "authors": [
+    {
+      "name": "fieg",
+      "email": "jeroen@webcreate.nl"
+    }
+  ],
+  "require": {
+    "php": ">=5.4"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "*"
+  },
+  "autoload": {
+    "psr-0": {"Fieg": "src/"}
+  },
+  "config": {
+    "bin-dir": "bin"
+  }
+}
