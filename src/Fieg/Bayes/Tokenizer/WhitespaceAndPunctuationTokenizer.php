@@ -11,9 +11,11 @@ use Fieg\Bayes\TokenizerInterface;
 
 class WhitespaceAndPunctuationTokenizer implements TokenizerInterface
 {
+    protected $pattern = "/[ ,.?!-:;\\n\\r\\t…_]/";
+
     public function tokenize($string)
     {
-        $retval = preg_split("/[ ,.?!-:\n\t]/i", mb_strtolower($string));
+        $retval = preg_split($this->pattern, mb_strtolower($string));
         $retval = array_filter($retval, 'trim');
         $retval = array_values($retval);
 
