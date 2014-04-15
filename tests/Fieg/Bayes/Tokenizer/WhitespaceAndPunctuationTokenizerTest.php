@@ -19,8 +19,8 @@ class WhitespaceAndPunctuationTokenizerTest extends \PHPUnit_Framework_TestCase
     public function tokenizeDataProvider()
     {
         return array(
-            array('Hello, how are you?', array('Hello', 'how', 'are', 'you')),
-            array("Hello\n\nHow are you?!", array('Hello', 'How', 'are', 'you')),
+            array('Hello, how are you?', array('hello', 'how', 'are', 'you')),
+            array("Hello\n\nHow are you?!", array('hello', 'how', 'are', 'you')),
         );
     }
 }
