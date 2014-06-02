@@ -3,6 +3,8 @@ Naive Bayes Classifier
 
 Implementation of Naive Bayes Classifier algorithm in PHP.
 
+Based on [Machine Learning: Naive Bayes Document Classification Algorithm in Javascript](http://burakkanber.com/blog/machine-learning-naive-bayes-1/) by Burak Kanber.
+
 [![Build Status](https://travis-ci.org/fieg/bayes.png?branch=master)](https://travis-ci.org/fieg/bayes)
 
 Getting started
