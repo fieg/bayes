@@ -142,16 +142,15 @@ class Classifier
      */
     protected function inversedTokenCount($token, $label)
     {
-        $total = 0;
         $data = $this->data;
 
-        unset($data[$label]);
+        $totalTokenCount = $this->tokens[$token];
 
-        foreach ($data as $_label => $tokenCounts) {
-            $total += intval(@$tokenCounts[$token]);
-        }
+        $totalLabelTokenCount = intval(@$data[$label][$token]);
 
-        return $total;
+        $retval = $totalTokenCount - $totalLabelTokenCount;
+
+        return $retval;
     }
 
     /**
