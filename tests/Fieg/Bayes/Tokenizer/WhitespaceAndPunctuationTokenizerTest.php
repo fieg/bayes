@@ -21,6 +21,7 @@ class WhitespaceAndPunctuationTokenizerTest extends \PHPUnit_Framework_TestCase
         return array(
             array('Hello, how are you?', array('hello', 'how', 'are', 'you')),
             array("Hello\n\nHow are you?!", array('hello', 'how', 'are', 'you')),
+            array("Un importante punto de inflexión en la historia de la ciencia filosófica primitiva", array('un','importante','punto','de','inflexión','en','la','historia','de','la','ciencia','filosófica','primitiva')),
         );
     }
 }
