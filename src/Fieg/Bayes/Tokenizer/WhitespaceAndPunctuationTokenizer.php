@@ -11,7 +11,7 @@ use Fieg\Bayes\TokenizerInterface;
 
 class WhitespaceAndPunctuationTokenizer implements TokenizerInterface
 {
-    protected $pattern = "/[ ,.?!-:;\\n\\r\\t…_]/";
+    protected $pattern = "/[ ,.?!-:;\\n\\r\\t…_]/u";
 
     public function tokenize($string)
     {
