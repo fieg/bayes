@@ -57,13 +57,26 @@ class Classifier
     {
         $tokens = $this->tokenizer->tokenize($text);
 
-        foreach ($tokens as $token) {
-            @$this->labels[$label]++;
-            @$this->tokens[$token]++;
-            @$this->data[$label][$token]++;
+        if (!isset($this->labels[$label])) {
+            $this->labels[$label] = 0;
+            $this->data[$label] = [];
+            $this->docs[$label] = 0;
         }
 
-        @$this->docs[$label]++;
+        foreach ($tokens as $token) {
+            if (!isset($this->tokens[$token])) {
+                $this->tokens[$token] = 0;
+            }
+            if (!isset($this->data[$label][$token])) {
+                $this->data[$label][$token] = 0;
+            }
+
+            $this->labels[$label]++;
+            $this->tokens[$token]++;
+            $this->data[$label][$token]++;
+        }
+
+        $this->docs[$label]++;
     }
 
     /**
@@ -83,7 +96,7 @@ class Classifier
         foreach ($this->labels as $label => $labelCount) {
             $logSum = 0;
 
-            $docCount = intval(@$this->docs[$label]);
+            $docCount = $this->docs[$label];
             $inversedDocCount = $totalDocCount - $docCount;
 
             if (0 === $inversedDocCount) {
@@ -91,13 +104,13 @@ class Classifier
             }
 
             foreach ($tokens as $token) {
-                $totalTokenCount = intval(@$this->tokens[$token]);
+                $totalTokenCount = isset($this->tokens[$token]) ? $this->tokens[$token] : 0;
 
                 if (0 === $totalTokenCount) {
                     continue;
                 }
 
-                $tokenCount         = intval(@$this->data[$label][$token]);
+                $tokenCount         = isset($this->data[$label][$token]) ? $this->data[$label][$token] : 0;
                 $inversedTokenCount = $this->inversedTokenCount($token, $label);
 
                 $tokenProbabilityPositive = $tokenCount / $docCount;
@@ -146,7 +159,7 @@ class Classifier
 
         $totalTokenCount = $this->tokens[$token];
 
-        $totalLabelTokenCount = intval(@$data[$label][$token]);
+        $totalLabelTokenCount = isset($data[$label][$token]) ? $data[$label][$token] : 0;
 
         $retval = $totalTokenCount - $totalLabelTokenCount;
 
