@@ -96,7 +96,7 @@ class Classifier
         foreach ($this->labels as $label => $labelCount) {
             $logSum = 0;
 
-            $docCount = intval($this->docs[$label]);
+            $docCount = $this->docs[$label];
             $inversedDocCount = $totalDocCount - $docCount;
 
             if (0 === $inversedDocCount) {
@@ -104,13 +104,13 @@ class Classifier
             }
 
             foreach ($tokens as $token) {
-                $totalTokenCount = isset($this->tokens[$token]) ? intval($this->tokens[$token]) : 0;
+                $totalTokenCount = isset($this->tokens[$token]) ? $this->tokens[$token] : 0;
 
                 if (0 === $totalTokenCount) {
                     continue;
                 }
 
-                $tokenCount         = isset($this->data[$label][$token]) ? intval($this->data[$label][$token]) : 0;
+                $tokenCount         = isset($this->data[$label][$token]) ? $this->data[$label][$token] : 0;
                 $inversedTokenCount = $this->inversedTokenCount($token, $label);
 
                 $tokenProbabilityPositive = $tokenCount / $docCount;
@@ -159,7 +159,7 @@ class Classifier
 
         $totalTokenCount = $this->tokens[$token];
 
-        $totalLabelTokenCount = isset($data[$label][$token]) ? intval($data[$label][$token]) : 0;
+        $totalLabelTokenCount = isset($data[$label][$token]) ? $data[$label][$token] : 0;
 
         $retval = $totalTokenCount - $totalLabelTokenCount;
 
